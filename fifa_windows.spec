@@ -1,0 +1,61 @@
+# -*- mode: python ; coding: utf-8 -*-
+# PyInstaller spec – Windows (.exe)
+# Build (on Windows):  pyinstaller fifa_windows.spec
+
+block_cipher = None
+
+a = Analysis(
+    ['main.py'],
+    pathex=['.'],
+    binaries=[],
+    datas=[
+        ('stories/players.json', 'stories'),
+    ],
+    hiddenimports=[
+        'customtkinter',
+        'pystray',
+        'pystray._win32',
+        'PIL',
+        'PIL.Image',
+        'PIL.ImageDraw',
+        'docx',
+        'pptx',
+        'pptx.util',
+        'pptx.dml.color',
+        'pptx.enum.text',
+        'winreg',
+    ],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    [],
+    name='FIFAInspirational',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,          # No terminal window
+    disable_windowed_traceback=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+    version='version_info.txt',   # optional, see build notes
+    icon=None,
+)
